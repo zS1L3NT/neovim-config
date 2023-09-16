@@ -35,4 +35,27 @@ return require('packer').startup(function(use)
     }
 
     use "folke/neodev.nvim"
+
+    use {
+        "goolord/alpha-nvim",
+        requires = { "nvim-tree/nvim-web-devicons" },
+        config = function() require "alpha".setup(require "alpha.themes.startify".config) end
+    }
+
+    use "airblade/vim-gitgutter"
+
+    use "hrsh7th/cmp-nvim-lsp"
+    use "hrsh7th/cmp-buffer"
+    use "hrsh7th/cmp-path"
+    use "hrsh7th/cmp-cmdline"
+    use "hrsh7th/nvim-cmp"
+
+    use {
+        "nvim-lualine/lualine.nvim",
+        requires = { "nvim-tree/nvim-web-devicons", opt = true }
+    }
+
+    use "mg979/vim-visual-multi"
+
+    use "nvim-tree/nvim-tree.lua"
 end)
