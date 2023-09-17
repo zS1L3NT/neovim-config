@@ -26,4 +26,6 @@ vim.opt.updatetime = 50
 
 vim.g.mapleader = " "
 
+vim.opt.clipboard = "unnamedplus"
+
 vim.cmd([[au VimLeavePre * set guicursor=a:ver50]])
