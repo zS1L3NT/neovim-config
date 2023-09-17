@@ -12,8 +12,6 @@ vim.keymap.set("n", "N", "Nzzzv")
 --- Disable copying when pasting
 vim.keymap.set("x", "p", "\"_dp")
 vim.keymap.set("x", "P", "\"_dP")
-vim.keymap.set("n", "d", "\"_d")
-vim.keymap.set("v", "d", "\"_d")
 
 vim.keymap.set("n", "<C-f>", "<cmd>silent !tmux neww tmux-sessionizer<CR>")
 
