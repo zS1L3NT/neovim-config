@@ -1,5 +1,6 @@
 -- Set up nvim-cmp.
 local cmp = require("cmp")
+local cmp_action = require("lsp-zero").cmp_action()
 
 cmp.setup({
     snippet = {
@@ -13,7 +14,7 @@ cmp.setup({
     },
     window = {
         completion = cmp.config.window.bordered(),
-        -- documentation = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
     },
     mapping = cmp.mapping.preset.insert({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
@@ -21,6 +22,8 @@ cmp.setup({
         ['<C-Space>'] = cmp.mapping.complete(),
         ['<C-e>'] = cmp.mapping.abort(),
         ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+        ['<Tab>'] = cmp_action.tab_complete(),
+        ['<S-Tab'] = cmp_action.select_prev_or_fallback(),
     }),
     sources = cmp.config.sources({
         { name = 'nvim_lsp' },
@@ -61,8 +64,7 @@ cmp.setup.cmdline(':', {
 })
 
 -- Set up lspconfig.
--- local capabilities = require('cmp_nvim_lsp').default_capabilities()
--- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
--- require('lspconfig')['<YOUR_LSP_SERVER>'].setup {
---     capabilities = capabilities
--- }
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+require('lspconfig')['tsserver'].setup {
+    capabilities = capabilities
+}

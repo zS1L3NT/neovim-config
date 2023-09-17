@@ -30,6 +30,9 @@ return require('packer').startup(function(use)
             -- Autocompletion
             { 'hrsh7th/nvim-cmp' },
             { 'hrsh7th/cmp-nvim-lsp' },
+            { 'hrsh7th/cmp-buffer' },
+            { 'hrsh7th/cmp-cmdline' },
+            { 'hrsh7th/cmp-path' },
             { 'L3MON4D3/LuaSnip' },
         }
     }
@@ -43,12 +46,6 @@ return require('packer').startup(function(use)
     }
 
     use "airblade/vim-gitgutter"
-
-    use "hrsh7th/cmp-nvim-lsp"
-    use "hrsh7th/cmp-buffer"
-    use "hrsh7th/cmp-path"
-    use "hrsh7th/cmp-cmdline"
-    use "hrsh7th/nvim-cmp"
 
     use {
         "nvim-lualine/lualine.nvim",
