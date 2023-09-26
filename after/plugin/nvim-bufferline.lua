@@ -10,14 +10,14 @@ bufferline.setup({
         middle_click_command = bufdelete.bufdelete,
         diagnostics = "nvim_lsp",
         diagnostics_indicator = function (count, level)
-          local icon = level:match("error") and "? " or "? "
-          return " " .. icon .. count
+            local icon = level:match("error") and " " or " "
+            return " " .. icon .. count
         end,
         offsets = {{
             filetype = "NvimTree",
             text = "Files",
             text_align = "center",
-            separator = true,
+            separator = "▏",
         }},
         separator_style = "slant",
     }

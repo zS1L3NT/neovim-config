@@ -1,5 +1,3 @@
-vim.keymap.set("n", ";t", vim.cmd.NvimTreeToggle)
-
 require("nvim-tree").setup({
     on_attach = function(bufnr)
         local api = require("nvim-tree.api")
@@ -24,5 +22,8 @@ require("nvim-tree").setup({
         width = 50,
     },
 })
+
+vim.keymap.set("n", ";t", vim.cmd.NvimTreeToggle)
+vim.o.fillchars = vim.o.fillchars .. "vert:▏"
 
 vim.cmd.NvimTreeOpen()
