@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader>pt", vim.cmd.NvimTreeToggle)
+vim.keymap.set("n", ";t", vim.cmd.NvimTreeToggle)
 
 require("nvim-tree").setup({
     on_attach = function(bufnr)
