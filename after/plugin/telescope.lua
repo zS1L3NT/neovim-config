@@ -15,6 +15,6 @@ telescope.setup({
 })
 
 vim.keymap.set('n', ';f', function() builtin.find_files({ no_ignore = false, hidden = true }) end)
-vim.keymap.set('n', ';r', builtin.live_grep)
-vim.keymap.set('n', ';e', builtin.diagnostics)
+vim.keymap.set('n', ';s', builtin.live_grep)
+vim.keymap.set('n', ';d', builtin.diagnostics)
 
