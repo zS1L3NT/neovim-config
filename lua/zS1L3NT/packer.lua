@@ -55,6 +55,7 @@ return require('packer').startup(function(use)
     use "mg979/vim-visual-multi"
 
     use "nvim-tree/nvim-tree.lua"
+    use "akinsho/nvim-bufferline.lua"
 
     use "windwp/nvim-ts-autotag"
     use "windwp/nvim-autopairs"
