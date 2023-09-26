@@ -59,4 +59,6 @@ return require('packer').startup(function(use)
 
     use "windwp/nvim-ts-autotag"
     use "windwp/nvim-autopairs"
+
+    use "ray-x/lsp_signature.nvim"
 end)
