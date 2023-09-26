@@ -45,7 +45,7 @@ return require('packer').startup(function(use)
         config = function() require "alpha".setup(require "alpha.themes.startify".config) end
     }
 
-    use "airblade/vim-gitgutter"
+    use "lewis6991/gitsigns.nvim"
 
     use {
         "nvim-lualine/lualine.nvim",
