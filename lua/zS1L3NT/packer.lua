@@ -56,6 +56,7 @@ return require('packer').startup(function(use)
 
     use "nvim-tree/nvim-tree.lua"
     use "akinsho/nvim-bufferline.lua"
+    use "famiu/bufdelete.nvim"
 
     use "windwp/nvim-ts-autotag"
     use "windwp/nvim-autopairs"
