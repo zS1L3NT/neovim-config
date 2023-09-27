@@ -69,4 +69,6 @@ return require('packer').startup(function(use)
     use "sbdchd/neoformat"
 
     use "lukas-reineke/indent-blankline.nvim"
+
+    use "github/copilot.vim"
 end)
