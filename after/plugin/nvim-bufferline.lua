@@ -24,6 +24,6 @@ bufferline.setup({
 })
 
 vim.opt.termguicolors = true
-vim.keymap.set("n", "<S-W>", bufdelete.bufdelete)
-vim.keymap.set("n", "<Tab>", vim.cmd.BufferLineCycleNext)
-vim.keymap.set("n", "<S-Tab>", vim.cmd.BufferLineCyclePrev)
+vim.keymap.set("n", "<S-w>", bufdelete.bufdelete)
+vim.keymap.set("n", "<S-l>", vim.cmd.BufferLineCycleNext)
+vim.keymap.set("n", "<S-h>", vim.cmd.BufferLineCyclePrev)
