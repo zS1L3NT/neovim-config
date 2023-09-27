@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
             { 'weilbith/nvim-code-action-menu', cmd = 'CodeActionMenu' },
 
             -- Autocompletion
+            { 'onsails/lspkind.nvim' },
             { 'hrsh7th/nvim-cmp' },
             { 'hrsh7th/cmp-nvim-lsp' },
             { 'hrsh7th/cmp-buffer' },

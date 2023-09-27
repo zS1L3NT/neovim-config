@@ -1,6 +1,9 @@
 -- Set up nvim-cmp.
 local cmp = require("cmp")
 local cmp_action = require("lsp-zero").cmp_action()
+local lspkind = require("lspkind")
+
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg ="#6CC644" })
 
 cmp.setup({
     snippet = {
@@ -35,7 +38,20 @@ cmp.setup({
         -- { name = 'snippy' }, -- For snippy users.
     }, {
         { name = 'buffer' },
-    })
+    }),
+    formatting = {
+		fields = {
+			cmp.ItemField.Kind,
+			cmp.ItemField.Abbr,
+			cmp.ItemField.Menu,
+		},
+        format = lspkind.cmp_format({
+            mode = "symbol_text",
+            symbol_map = {
+                Copilot = "",
+            },
+        })
+    }
 })
 
 -- Set configuration for specific filetype.
