@@ -13,3 +13,5 @@ vim.keymap.set("x", "p", "\"_dp")
 vim.keymap.set("x", "P", "\"_dP")
 
 vim.keymap.set("n", "ƒ", vim.cmd.Neoformat)
+
+vim.keymap.set("n", "<leader>tm", ":belowright split | resize 25 | terminal<CR> | i")
