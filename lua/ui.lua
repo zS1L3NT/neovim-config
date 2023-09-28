@@ -71,7 +71,7 @@ require("nvim-tree").setup({
 })
 
 vim.keymap.set("n", ";t", vim.cmd.NvimTreeToggle)
---vim.o.fillchars = vim.o.fillchars .. "vert:▏"
+vim.o.fillchars = vim.o.fillchars .. "vert:▏"
 
 vim.cmd([[NvimTreeOpen]])
 
