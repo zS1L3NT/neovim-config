@@ -1,5 +1,5 @@
 -- Code Action Menu
-vim.keymap.set("n", "<leader>f", vim.cmd.CodeActionMenu)
+vim.keymap.set("n", "<C-.>", vim.cmd.CodeActionMenu)
 
 -- Git Signs
 require("gitsigns").setup()
