@@ -9,43 +9,43 @@ require("nvim-ts-autotag").setup()
 
 -- Auto Pairs
 require("nvim-autopairs").setup({
-    disable_filetype = { "TelescopePrompt", "vim" },
+	disable_filetype = { "TelescopePrompt", "vim" },
 })
 
 -- Null LS
 local null_ls = require("null-ls")
 
 null_ls.setup({
-    sources = {
-        null_ls.builtins.diagnostics.eslint_d.with({
-            diagnostics_format = '[eslint] #{m}\n(#{c})'
-        }),
-        null_ls.builtins.diagnostics.fish
-    }
+	sources = {
+		null_ls.builtins.diagnostics.eslint_d.with({
+			diagnostics_format = "[eslint] #{m}\n(#{c})",
+		}),
+		null_ls.builtins.diagnostics.fish,
+	},
 })
 
 -- Prettier
 require("prettier").setup({
-    bin = 'prettierd',
-    filetypes = {
-        "css",
-        "javascript",
-        "javascriptreact",
-        "typescript",
-        "typescriptreact",
-        "json",
-        "scss",
-        "less"
-    }
+	bin = "prettierd",
+	filetypes = {
+		"css",
+		"javascript",
+		"javascriptreact",
+		"typescript",
+		"typescriptreact",
+		"json",
+		"scss",
+		"less",
+	},
 })
 
 -- Indent Blankline
 require("ibl").setup({
-    char = "▏",
+	char = "▏",
 })
 
 -- Copilot
 require("copilot").setup({
-    suggestion = { enabled = false },
-    panel = { enabled = false },
+	suggestion = { enabled = false },
+	panel = { enabled = false },
 })

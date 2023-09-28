@@ -1,72 +1,74 @@
-vim.cmd [[packadd packer.nvim]]
+vim.cmd([[packadd packer.nvim]])
 
 -- Packer
-require('packer').startup(function(use)
-    use 'wbthomason/packer.nvim'
+require("packer").startup(function(use)
+	use("wbthomason/packer.nvim")
 
-    -- Editor
-    use {
-        'weilbith/nvim-code-action-menu',
-        cmd = 'CodeActionMenu',
-    }
-    use "lewis6991/gitsigns.nvim"
-    use "windwp/nvim-ts-autotag"
-    use "windwp/nvim-autopairs"
-    use "jose-elias-alvarez/null-ls.nvim"
-    use "MunifTanjim/prettier.nvim"
-    use "sbdchd/neoformat"
-    use "lukas-reineke/indent-blankline.nvim"
-    use "zbirenbaum/copilot.lua"
-    use {
-        "zbirenbaum/copilot-cmp",
-        after = "copilot.lua",
-        config = function() require("copilot_cmp").setup() end,
-    }
+	-- Editor
+	use({
+		"weilbith/nvim-code-action-menu",
+		cmd = "CodeActionMenu",
+	})
+	use("lewis6991/gitsigns.nvim")
+	use("windwp/nvim-ts-autotag")
+	use("windwp/nvim-autopairs")
+	use("jose-elias-alvarez/null-ls.nvim")
+	use("MunifTanjim/prettier.nvim")
+	use("sbdchd/neoformat")
+	use("lukas-reineke/indent-blankline.nvim")
+	use("zbirenbaum/copilot.lua")
+	use({
+		"zbirenbaum/copilot-cmp",
+		after = "copilot.lua",
+		config = function()
+			require("copilot_cmp").setup()
+		end,
+	})
 
-    -- UI
-    use 'navarasu/onedark.nvim'
-    use {
-        'nvim-telescope/telescope.nvim',
-        tag = '0.1.3',
-        requires = { 'nvim-lua/plenary.nvim' },
-    }
-    use {
-        "goolord/alpha-nvim",
-        requires = { "nvim-tree/nvim-web-devicons" },
-    }
-    use {
-        "nvim-lualine/lualine.nvim",
-        requires = { "nvim-tree/nvim-web-devicons" },
-    }
-    use "nvim-tree/nvim-tree.lua"
-    use "akinsho/nvim-bufferline.lua"
-    use "famiu/bufdelete.nvim"
+	-- UI
+	use("navarasu/onedark.nvim")
+	use({
+		"nvim-telescope/telescope.nvim",
+		tag = "0.1.3",
+		requires = { "nvim-lua/plenary.nvim" },
+	})
+	use({
+		"goolord/alpha-nvim",
+		requires = { "nvim-tree/nvim-web-devicons" },
+	})
+	use({
+		"nvim-lualine/lualine.nvim",
+		requires = { "nvim-tree/nvim-web-devicons" },
+	})
+	use("nvim-tree/nvim-tree.lua")
+	use("akinsho/nvim-bufferline.lua")
+	use("famiu/bufdelete.nvim")
 
-    -- LSP
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-    }
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v2.x',
-        requires = {
-            -- LSP Support
-            'neovim/nvim-lspconfig',
-            'williamboman/mason.nvim',
-            'williamboman/mason-lspconfig.nvim',
+	-- LSP
+	use({
+		"nvim-treesitter/nvim-treesitter",
+		run = ":TSUpdate",
+	})
+	use({
+		"VonHeikemen/lsp-zero.nvim",
+		branch = "v2.x",
+		requires = {
+			-- LSP Support
+			"neovim/nvim-lspconfig",
+			"williamboman/mason.nvim",
+			"williamboman/mason-lspconfig.nvim",
 
-            -- Autocompletion
-            'onsails/lspkind.nvim',
-            'hrsh7th/nvim-cmp',
-            'hrsh7th/cmp-nvim-lsp',
-            'hrsh7th/cmp-buffer',
-            'hrsh7th/cmp-cmdline',
-            'hrsh7th/cmp-path',
-            'L3MON4D3/LuaSnip',
-        }
-    }
-    use "ray-x/lsp_signature.nvim"
+			-- Autocompletion
+			"onsails/lspkind.nvim",
+			"hrsh7th/nvim-cmp",
+			"hrsh7th/cmp-nvim-lsp",
+			"hrsh7th/cmp-buffer",
+			"hrsh7th/cmp-cmdline",
+			"hrsh7th/cmp-path",
+			"L3MON4D3/LuaSnip",
+		},
+	})
+	use("ray-x/lsp_signature.nvim")
 end)
 
 -- Globals
@@ -103,8 +105,8 @@ vim.opt.clipboard = "unnamedplus"
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
-vim.keymap.set("x", "p", "\"_dp")
-vim.keymap.set("x", "P", "\"_dP")
+vim.keymap.set("x", "p", '"_dp')
+vim.keymap.set("x", "P", '"_dP')
 
 vim.keymap.set("n", "ƒ", vim.cmd.Neoformat)
 
