@@ -1,4 +1,54 @@
--- Set up nvim-cmp.
+-- Treesitter
+require("nvim-treesitter.configs").setup({
+    -- A list of parser names, or "all" (the five listed parsers should always be installed)
+    ensure_installed = {
+        "javascript",
+        "typescript",
+        "lua",
+        "vim",
+        "vimdoc",
+        "query",
+        "html",
+        "css",
+        "yaml",
+        "json",
+        "php",
+        "fish"
+    },
+
+    -- Install parsers synchronously (only applied to `ensure_installed`)
+    sync_install = false,
+
+    -- Automatically install missing parsers when entering buffer
+    -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
+    auto_install = true,
+
+    highlight = {
+        enable = true,
+    },
+})
+
+-- LSP Zero
+local lsp = require('lsp-zero').preset({})
+
+lsp.on_attach(function(_, bufnr)
+    -- see :help lsp-zero-keybindings
+    -- to learn the available actions
+    lsp.default_keymaps({buffer = bufnr})
+end)
+
+require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
+
+lsp.ensure_installed({
+    "lua_ls",
+    "tsserver",
+    "eslint",
+    "rust_analyzer",
+})
+
+lsp.setup()
+
+-- CMP
 local cmp = require("cmp")
 local cmp_action = require("lsp-zero").cmp_action()
 local lspkind = require("lspkind")
@@ -40,11 +90,11 @@ cmp.setup({
         { name = 'buffer' },
     }),
     formatting = {
-		fields = {
-			cmp.ItemField.Kind,
-			cmp.ItemField.Abbr,
-			cmp.ItemField.Menu,
-		},
+        fields = {
+            cmp.ItemField.Kind,
+            cmp.ItemField.Abbr,
+            cmp.ItemField.Menu,
+        },
         format = lspkind.cmp_format({
             mode = "symbol_text",
             symbol_map = {
@@ -86,3 +136,9 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 require('lspconfig')['tsserver'].setup {
     capabilities = capabilities
 }
+
+-- LSP Signature
+require("lsp_signature").setup({
+    bind = true,
+    fix_pos = true,
+})
