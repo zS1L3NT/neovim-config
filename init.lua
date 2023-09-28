@@ -24,7 +24,7 @@ require("packer").startup(function(use)
 			require("copilot_cmp").setup()
 		end,
 	})
-    use("christoomey/vim-tmux-navigator")
+	use("christoomey/vim-tmux-navigator")
 
 	-- UI
 	use("navarasu/onedark.nvim")
