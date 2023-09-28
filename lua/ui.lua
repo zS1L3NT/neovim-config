@@ -1,11 +1,5 @@
 -- OneDark
-local onedark = require("onedark")
-
-onedark.setup({
-	style = "cool",
-})
-
-onedark.load()
+require("onedark").load()
 
 -- Telescope
 local telescope = require("telescope")
