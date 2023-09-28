@@ -19,6 +19,13 @@ telescope.setup({
 				["q"] = actions.close,
 			},
 		},
+        file_ignore_patterns = {
+            ".git/",
+            "node_modules/",
+            "vendor/",
+            "dist",
+            "pnpm-lock.yaml",
+        }
 	},
 })
 
@@ -51,6 +58,9 @@ require("nvim-tree").setup({
 	diagnostics = {
 		enable = true,
 	},
+    filters = {
+        dotfiles = false,
+    },
 	update_cwd = true,
 	update_focused_file = {
 		enable = true,
