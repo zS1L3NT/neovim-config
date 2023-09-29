@@ -102,8 +102,20 @@ vim.keymap.set("x", "P", '"_dP')
 
 vim.keymap.set("n", "ƒ", vim.cmd.Neoformat)
 
+function NvimTreeOpenAndNextBuffer()
+    vim.cmd([[NvimTreeOpen]])
+    if not string.find(vim.api.nvim_command_output("buffers"), "No Name") then
+        vim.cmd([[bnext]])
+    end
+end
+
 vim.cmd([[au VimLeavePre * set guicursor=a:ver50]])
+
+vim.api.nvim_create_user_command("Reload", "source ~/.config/nvim/init.lua | :lua NvimTreeOpenAndNextBuffer()<CR>", {})
+vim.cmd("cnoreabbrev rl Reload")
 
 dofile("/Users/mac/.config/nvim/lsp.lua")
 dofile("/Users/mac/.config/nvim/ui.lua")
 dofile("/Users/mac/.config/nvim/editor.lua")
+
+NvimTreeOpenAndNextBuffer()
