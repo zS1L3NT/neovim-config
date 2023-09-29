@@ -18,8 +18,8 @@ require("nvim-treesitter.configs").setup({
 
 	sync_install = false,
 	auto_install = true,
-    ignore_install = {},
-    modules = {},
+	ignore_install = {},
+	modules = {},
 
 	highlight = {
 		enable = true,
@@ -33,42 +33,47 @@ local lspconfig = require("lspconfig")
 
 mason.setup({})
 mason_lspconfig.setup({
-    ensure_installed = {"lua_ls", "tsserver", "rust_analyzer"}
+	ensure_installed = { "lua_ls", "tsserver", "rust_analyzer" },
 })
 
 mason_lspconfig.setup_handlers({
-    function(server)
-        local options = {}
+	function(server)
+		local options = {}
 
-        if server == "lua_ls" then
-            options.settings = {
-                Lua = {
-                    diagnostics = {
-                        globals = {"vim"},
-                    },
+		if server == "lua_ls" then
+			options.settings = {
+				Lua = {
+					diagnostics = {
+						globals = { "vim" },
+					},
 					workspace = {
 						library = vim.api.nvim_get_runtime_file("", true),
 					},
-                },
-            }
-        end
+				},
+			}
+		end
 
-        lspconfig[server].setup(options)
-    end,
+		lspconfig[server].setup(options)
+	end,
 })
 
 -- CMP
 local cmp = require("cmp")
-local cmp_action = require("lsp-zero").cmp_action()
+local luasnip = require("luasnip")
 local lspkind = require("lspkind")
 
 vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+
+local has_words_before = function()
+	local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+	return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+end
 
 cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+			require("luasnip").lsp_expand(args.body) -- For `luasnip` users.
 			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
 			-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
 			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
@@ -81,8 +86,26 @@ cmp.setup({
 	mapping = cmp.mapping.preset.insert({
 		["<C-CR>"] = cmp.mapping.complete(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
-		["<Tab>"] = cmp_action.tab_complete(),
-		["<S-Tab>"] = cmp_action.select_prev_or_fallback(),
+		["<Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_next_item()
+			elseif luasnip.expand_or_jumpable() then
+				luasnip.expand_or_jump()
+			elseif has_words_before() then
+				cmp.complete()
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
+		["<S-Tab>"] = cmp.mapping(function(fallback)
+			if cmp.visible() then
+				cmp.select_prev_item()
+			elseif luasnip.jumpable(-1) then
+				luasnip.jump(-1)
+			else
+				fallback()
+			end
+		end, { "i", "s" }),
 		["<C-b>"] = cmp.mapping.scroll_docs(-4),
 		["<C-f>"] = cmp.mapping.scroll_docs(4),
 		["<C-e>"] = cmp.mapping.abort(),
