@@ -22,7 +22,7 @@ require("packer").startup(function(use)
 		after = "copilot.lua",
 		config = function()
 			require("copilot_cmp").setup()
-		end,
+		end
 	})
 	use("christoomey/vim-tmux-navigator")
 
@@ -104,6 +104,6 @@ vim.keymap.set("n", "ƒ", vim.cmd.Neoformat)
 
 vim.cmd([[au VimLeavePre * set guicursor=a:ver50]])
 
-require("lsp")
-require("ui")
-require("editor")
+dofile("/Users/mac/.config/nvim/lsp.lua")
+dofile("/Users/mac/.config/nvim/ui.lua")
+dofile("/Users/mac/.config/nvim/editor.lua")

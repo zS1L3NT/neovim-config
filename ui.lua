@@ -33,7 +33,7 @@ vim.keymap.set("n", ";d", builtin.diagnostics)
 require("alpha").setup(require("alpha.themes.dashboard").config)
 
 -- LuaLine
-require("lualine").setup()
+require("lualine").setup({})
 
 -- Tree
 require("nvim-tree").setup({
@@ -65,18 +65,23 @@ require("nvim-tree").setup({
 })
 
 vim.keymap.set("n", ";t", vim.cmd.NvimTreeToggle)
-vim.o.fillchars = vim.o.fillchars .. "vert:▏"
+if (not string.find(vim.o.fillchars, "vert:▏")) then
+    vim.o.fillchars = vim.o.fillchars .. "vert:▏"
+end
 
 -- Bufferline
 local bufdelete = require("bufdelete")
 
 require("bufferline").setup({
+    highlights = {},
+    ---@diagnostic disable-next-line: missing-fields
 	options = {
 		truncate_names = false,
 		close_command = bufdelete.bufdelete,
 		middle_click_command = bufdelete.bufdelete,
 		diagnostics = "nvim_lsp",
 		diagnostics_indicator = function(count, level)
+            ---@diagnostic disable-next-line: undefined-field
 			local icon = level:match("error") and " " or " "
 			return " " .. icon .. count
 		end,

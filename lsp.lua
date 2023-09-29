@@ -16,12 +16,10 @@ require("nvim-treesitter.configs").setup({
 		"fish",
 	},
 
-	-- Install parsers synchronously (only applied to `ensure_installed`)
 	sync_install = false,
-
-	-- Automatically install missing parsers when entering buffer
-	-- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
 	auto_install = true,
+    ignore_install = {},
+    modules = {},
 
 	highlight = {
 		enable = true,
@@ -33,14 +31,29 @@ local mason = require("mason")
 local mason_lspconfig = require("mason-lspconfig")
 local lspconfig = require("lspconfig")
 
-mason.setup()
+mason.setup({})
 mason_lspconfig.setup({
     ensure_installed = {"lua_ls", "tsserver", "rust_analyzer"}
 })
 
 mason_lspconfig.setup_handlers({
     function(server)
-        lspconfig[server].setup()
+        local options = {}
+
+        if server == "lua_ls" then
+            options.settings = {
+                Lua = {
+                    diagnostics = {
+                        globals = {"vim"},
+                    },
+					workspace = {
+						library = vim.api.nvim_get_runtime_file("", true),
+					},
+                },
+            }
+        end
+
+        lspconfig[server].setup(options)
     end,
 })
 

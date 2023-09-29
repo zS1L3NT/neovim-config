@@ -1,5 +1,5 @@
 -- Code Action Menu
-vim.keymap.set("n", "<C-.>", vim.cmd.CodeActionMenu)
+vim.keymap.set("n", "<leader>f", vim.cmd.CodeActionMenu)
 
 -- Git Signs
 require("gitsigns").setup()
@@ -15,14 +15,7 @@ require("nvim-autopairs").setup({
 -- Null LS
 local null_ls = require("null-ls")
 
-null_ls.setup({
-	sources = {
-		null_ls.builtins.diagnostics.eslint_d.with({
-			diagnostics_format = "[eslint] #{m}\n(#{c})",
-		}),
-		null_ls.builtins.diagnostics.fish,
-	},
-})
+null_ls.setup()
 
 -- Prettier
 require("prettier").setup({
