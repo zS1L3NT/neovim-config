@@ -54,7 +54,18 @@ require("nvim-tree").setup({
 	},
 	filters = {
 		dotfiles = false,
+        git_ignored = false,
 	},
+    highjack_cursor = true,
+    renderer = {
+        group_empty = true,
+        special_files = {},
+        highlight_git = true,
+        icons = {
+            git_placement = "after",
+        },
+    },
+    sync_root_with_cwd = true,
 	update_cwd = true,
 	update_focused_file = {
 		enable = true,
