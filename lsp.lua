@@ -36,9 +36,12 @@ mason_lspconfig.setup({
 	ensure_installed = { "lua_ls", "tsserver", "rust_analyzer" },
 })
 
+local capabilities = require("cmp_nvim_lsp").default_capabilities()
 mason_lspconfig.setup_handlers({
 	function(server)
-		local options = {}
+		local options = {
+            capabilities = capabilities
+        }
 
 		if server == "lua_ls" then
 			options.settings = {
