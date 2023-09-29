@@ -29,24 +29,20 @@ require("nvim-treesitter.configs").setup({
 })
 
 -- LSP Zero
-local lsp = require("lsp-zero").preset({})
+local mason = require("mason")
+local mason_lspconfig = require("mason-lspconfig")
+local lspconfig = require("lspconfig")
 
-lsp.on_attach(function(_, bufnr)
-	-- see :help lsp-zero-keybindings
-	-- to learn the available actions
-	lsp.default_keymaps({ buffer = bufnr })
-end)
-
-require("lspconfig").lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.ensure_installed({
-	"lua_ls",
-	"tsserver",
-	"eslint",
-	"rust_analyzer",
+mason.setup()
+mason_lspconfig.setup({
+    ensure_installed = {"lua_ls", "tsserver", "rust_analyzer"}
 })
 
-lsp.setup()
+mason_lspconfig.setup_handlers({
+    function(server)
+        lspconfig[server].setup()
+    end,
+})
 
 -- CMP
 local cmp = require("cmp")
@@ -59,8 +55,8 @@ cmp.setup({
 	snippet = {
 		-- REQUIRED - you must specify a snippet engine
 		expand = function(args)
-			vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-			-- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+			require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+			-- vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
 			-- require('snippy').expand_snippet(args.body) -- For `snippy` users.
 			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
 		end,
@@ -129,12 +125,6 @@ cmp.setup.cmdline(":", {
 	}, {
 		{ name = "cmdline" },
 	}),
-})
-
--- Set up lspconfig.
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-require("lspconfig")["tsserver"].setup({
-	capabilities = capabilities,
 })
 
 -- LSP Signature
