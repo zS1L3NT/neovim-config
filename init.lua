@@ -61,7 +61,6 @@ require("packer").startup(function(use)
 	use("hrsh7th/cmp-path")
 	use("onsails/lspkind.nvim")
 	use("L3MON4D3/LuaSnip")
-	use("ray-x/lsp_signature.nvim")
 end)
 
 dofile("/Users/mac/.config/nvim/lsp.lua")

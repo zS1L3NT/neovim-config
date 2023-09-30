@@ -40,8 +40,8 @@ local capabilities = require("cmp_nvim_lsp").default_capabilities()
 mason_lspconfig.setup_handlers({
 	function(server)
 		local options = {
-            capabilities = capabilities
-        }
+			capabilities = capabilities,
+		}
 
 		if server == "lua_ls" then
 			options.settings = {
@@ -80,10 +80,10 @@ cmp.setup({
 			-- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
 		end,
 	},
-    window = {
-        completion = cmp.config.window.bordered(),
-        documentation = cmp.config.window.bordered(),
-    },
+	window = {
+		completion = cmp.config.window.bordered(),
+		documentation = cmp.config.window.bordered(),
+	},
 	mapping = cmp.mapping.preset.insert({
 		["<C-Space>"] = cmp.mapping.complete(),
 		["<CR>"] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
@@ -164,8 +164,8 @@ cmp.setup.cmdline(":", {
 	}),
 })
 
--- LSP Signature
-require("lsp_signature").setup({
-	bind = true,
-	fix_pos = true,
+vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help, { buffer = true })
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers["signature_help"], {
+	border = "rounded",
+	close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
 })
