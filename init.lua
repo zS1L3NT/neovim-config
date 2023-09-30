@@ -22,9 +22,10 @@ require("packer").startup(function(use)
 		after = "copilot.lua",
 		config = function()
 			require("copilot_cmp").setup()
-		end
+		end,
 	})
 	use("christoomey/vim-tmux-navigator")
+	use("lewis6991/hover.nvim")
 
 	-- UI
 	use("navarasu/onedark.nvim")
@@ -63,7 +64,18 @@ require("packer").startup(function(use)
 	use("ray-x/lsp_signature.nvim")
 end)
 
--- Globals
+dofile("/Users/mac/.config/nvim/lsp.lua")
+dofile("/Users/mac/.config/nvim/ui.lua")
+dofile("/Users/mac/.config/nvim/editor.lua")
+
+local TRANSPARENCY = 10
+
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", { fg = "#6CC644" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#292C33", blend = TRANSPARENCY })
+vim.api.nvim_set_hl(0, "FloatBorder", { bg = "NONE" })
+vim.opt.pumblend = TRANSPARENCY
+vim.opt.winblend = TRANSPARENCY
+
 vim.g.mapleader = " "
 
 vim.opt.nu = true
@@ -113,11 +125,5 @@ vim.cmd([[au VimLeavePre * set guicursor=a:ver50]])
 
 vim.api.nvim_create_user_command("Reload", "source ~/.config/nvim/init.lua | :lua NvimTreeOpenAndNextBuffer()<CR>", {})
 vim.cmd("cnoreabbrev rl Reload")
-
-dofile("/Users/mac/.config/nvim/lsp.lua")
-dofile("/Users/mac/.config/nvim/ui.lua")
-dofile("/Users/mac/.config/nvim/editor.lua")
-
-vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
 
 NvimTreeOpenAndNextBuffer()

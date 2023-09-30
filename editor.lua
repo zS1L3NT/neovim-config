@@ -35,9 +35,9 @@ require("prettier").setup({
 -- Indent Blankline
 require("ibl").setup({
 	char = "▏",
-    scope = {
-        enabled = false,
-    }
+	scope = {
+		enabled = false,
+	},
 })
 
 -- Copilot
@@ -45,3 +45,20 @@ require("copilot").setup({
 	suggestion = { enabled = false },
 	panel = { enabled = false },
 })
+
+-- Hover
+local hover = require("hover")
+
+hover.setup({
+	init = function()
+		require("hover.providers.lsp")
+	end,
+	preview_opts = {
+		border = "rounded",
+	},
+	preview_window = false,
+	title = true,
+})
+
+vim.keymap.set("n", "K", hover.hover, { desc = "hover.nvim" })
+vim.keymap.set("n", "gK", hover.hover_select, { desc = "hover.nvim (select)" })
