@@ -35,6 +35,9 @@ require("prettier").setup({
 -- Indent Blankline
 require("ibl").setup({
 	char = "▏",
+    scope = {
+        enabled = false,
+    }
 })
 
 -- Copilot
