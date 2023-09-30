@@ -56,7 +56,7 @@ require("nvim-tree").setup({
 		dotfiles = false,
         git_ignored = false,
 	},
-    highjack_cursor = true,
+    hijack_cursor = true,
     renderer = {
         group_empty = true,
         special_files = {},
