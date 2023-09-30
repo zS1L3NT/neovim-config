@@ -118,4 +118,6 @@ dofile("/Users/mac/.config/nvim/lsp.lua")
 dofile("/Users/mac/.config/nvim/ui.lua")
 dofile("/Users/mac/.config/nvim/editor.lua")
 
+vim.api.nvim_set_hl(0, "CmpItemKindCopilot", {fg ="#6CC644"})
+
 NvimTreeOpenAndNextBuffer()
