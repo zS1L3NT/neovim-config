@@ -43,7 +43,7 @@ require("packer").startup(function(use)
 		requires = { "nvim-tree/nvim-web-devicons" },
 	})
 	use("nvim-tree/nvim-tree.lua")
-	use("akinsho/nvim-bufferline.lua")
+    -- use("akinsho/nvim-bufferline.lua")
 	use("famiu/bufdelete.nvim")
 
 	-- LSP

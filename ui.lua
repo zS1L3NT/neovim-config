@@ -81,34 +81,34 @@ if (not string.find(vim.o.fillchars, "vert:▏")) then
 end
 
 -- Bufferline
-local bufdelete = require("bufdelete")
+-- local bufdelete = require("bufdelete")
 
-require("bufferline").setup({
-    highlights = {},
-    ---@diagnostic disable-next-line: missing-fields
-	options = {
-		truncate_names = false,
-		close_command = bufdelete.bufdelete,
-		middle_click_command = bufdelete.bufdelete,
-		diagnostics = "nvim_lsp",
-		diagnostics_indicator = function(count, level)
-            ---@diagnostic disable-next-line: undefined-field
-			local icon = level:match("error") and " " or " "
-			return " " .. icon .. count
-		end,
-		offsets = {
-			{
-				filetype = "NvimTree",
-				text = "Files",
-				text_align = "center",
-				separator = "▏",
-			},
-		},
-		separator_style = "slant",
-	},
-})
+-- require("bufferline").setup({
+--     highlights = {},
+--     ---@diagnostic disable-next-line: missing-fields
+-- 	options = {
+-- 		truncate_names = false,
+-- 		close_command = bufdelete.bufdelete,
+-- 		middle_click_command = bufdelete.bufdelete,
+-- 		diagnostics = "nvim_lsp",
+-- 		diagnostics_indicator = function(count, level)
+--             ---@diagnostic disable-next-line: undefined-field
+-- 			local icon = level:match("error") and " " or " "
+-- 			return " " .. icon .. count
+-- 		end,
+-- 		offsets = {
+-- 			{
+-- 				filetype = "NvimTree",
+-- 				text = "Files",
+-- 				text_align = "center",
+-- 				separator = "▏",
+-- 			},
+-- 		},
+-- 		separator_style = "slant",
+-- 	},
+-- })
 
 vim.opt.termguicolors = true
-vim.keymap.set("n", "<S-w>", bufdelete.bufdelete)
-vim.keymap.set("n", "<S-l>", vim.cmd.BufferLineCycleNext)
-vim.keymap.set("n", "<S-h>", vim.cmd.BufferLineCyclePrev)
+-- vim.keymap.set("n", "<S-w>", bufdelete.bufdelete)
+-- vim.keymap.set("n", "<S-l>", vim.cmd.BufferLineCycleNext)
+-- vim.keymap.set("n", "<S-h>", vim.cmd.BufferLineCyclePrev)
