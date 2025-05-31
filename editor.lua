@@ -40,12 +40,6 @@ require("ibl").setup({
 	},
 })
 
--- Copilot
-require("copilot").setup({
-	suggestion = { enabled = false },
-	panel = { enabled = false },
-})
-
 -- Hover
 local hover = require("hover")
 

@@ -16,14 +16,6 @@ require("packer").startup(function(use)
 	use("MunifTanjim/prettier.nvim")
 	use("sbdchd/neoformat")
 	use("lukas-reineke/indent-blankline.nvim")
-	use("zbirenbaum/copilot.lua")
-	use({
-		"zbirenbaum/copilot-cmp",
-		after = "copilot.lua",
-		config = function()
-			require("copilot_cmp").setup()
-		end,
-	})
 	use("christoomey/vim-tmux-navigator")
 	use("lewis6991/hover.nvim")
 
