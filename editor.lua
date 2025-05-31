@@ -17,21 +17,6 @@ local null_ls = require("null-ls")
 
 null_ls.setup()
 
--- Prettier
-require("prettier").setup({
-	bin = "prettierd",
-	filetypes = {
-		"css",
-		"javascript",
-		"javascriptreact",
-		"typescript",
-		"typescriptreact",
-		"json",
-		"scss",
-		"less",
-	},
-})
-
 -- Indent Blankline
 require("ibl").setup({
 	char = "▏",
