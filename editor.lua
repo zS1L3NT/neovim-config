@@ -39,5 +39,6 @@ hover.setup({
 	title = true,
 })
 
+vim.api.nvim_exec('set mousescroll=hor:0', true)
 vim.keymap.set("n", "K", hover.hover, { desc = "hover.nvim" })
 vim.keymap.set("n", "gK", hover.hover_select, { desc = "hover.nvim (select)" })
